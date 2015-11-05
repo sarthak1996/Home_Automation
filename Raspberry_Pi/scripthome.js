@@ -20,7 +20,7 @@ function changeAllStatesToTrue(){
     checkbox3.checked=globalCheckBox;
 
 
-    var site="http://192.168.1.10/EHDLOGIN_rpi/updatestate.php?q=0";     
+    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q=0";     
     
     window.open(site,"_self")
 
@@ -83,7 +83,7 @@ function updateTable(app_n){
     alert("yello");
     if(app_n==2)
         alert("hello");
-    var site="http://192.168.1.10/EHDLOGIN_rpi/updatestate.php?q="+app_n;     
+    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q="+app_n;     
     
     window.open(site,"_self")
 }

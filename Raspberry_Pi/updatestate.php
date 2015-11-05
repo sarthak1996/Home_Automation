@@ -22,7 +22,7 @@
 				usleep(20);
 				echo "<script type='text/javascript'>alert('gpio out 1 sucess update!!');</script>";
 			}
-			else if($dbapp_state==1){
+			else if($dbapp_state==0){
 				exec('gpio write 7 0');
 				usleep(20);
 			}

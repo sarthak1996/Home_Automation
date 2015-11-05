@@ -18,7 +18,7 @@ $username= $_SESSION['username'];
 
     <body>
 		<?php
-			$raspiIp='192.168.1.10';
+			$raspiIp='localhost';
 			if($username && $userid){
 				
 				session_destroy();

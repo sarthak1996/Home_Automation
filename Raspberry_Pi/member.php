@@ -19,7 +19,7 @@ $username= $_SESSION['username'];
 	<?php
 	
 	//taking states from db
-	$raspiIp='192.168.1.10';
+	$raspiIp='localhost';
 	require("dynamicState.php");
 	include 'dynamicState.php';
 
