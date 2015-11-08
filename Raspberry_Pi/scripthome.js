@@ -7,6 +7,9 @@ function changeAllStatesToFalse(){
     checkbox2.checked=globalCheckBox;
     var checkbox3 = document.getElementById("button3");
     checkbox3.checked=globalCheckBox;
+    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q=0";     
+    
+    window.open(site,"_self")
 }
 
 /* Change all states to true*/
@@ -20,7 +23,7 @@ function changeAllStatesToTrue(){
     checkbox3.checked=globalCheckBox;
 
 
-    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q=0";     
+    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q=4";     
     
     window.open(site,"_self")
 
@@ -57,8 +60,7 @@ function getStates(){
 
 /* Set the states when opoening the home or the member page*/
 function setStates(s1,s2,s3){
-   alert("dsfsdfs");
-	var checkbox1 = document.getElementById("button1");
+    var checkbox1 = document.getElementById("button1");
     if(s1==1)
 		checkbox1.checked=1;
 	else 
@@ -78,11 +80,6 @@ function setStates(s1,s2,s3){
 
 /* Update the table whenever a checkbox is clicked*/
 function updateTable(app_n){
-    
-    if(app_n==1)
-    alert("yello");
-    if(app_n==2)
-        alert("hello");
     var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q="+app_n;     
     
     window.open(site,"_self")

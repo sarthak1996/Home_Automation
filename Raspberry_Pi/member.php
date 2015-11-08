@@ -14,7 +14,7 @@ $username= $_SESSION['username'];
         <script language="javascript" src="scripthome.js"></script>
     </head>
 
-    <body   >
+    <body>
 	
 	<?php
 	
@@ -29,15 +29,12 @@ $username= $_SESSION['username'];
 			$row=mysqli_fetch_assoc($query);
 			$state1=$row['app_state'];
 
-				exec('gpio mode 7 output');
+			exec('gpio mode 7 output');
 			if($state1==1){
 				exec('gpio write 7 1');
-				usleep(20);
-				echo "<script type='text/javascript'>alert('gpio out 1 sucess!!');</script>";
 			}
 			else{
 				exec('gpio write 7 0');
-				usleep(20);
 			}
 	}
 	else
@@ -49,6 +46,14 @@ $username= $_SESSION['username'];
 	if($numrows==1){
 			$row=mysqli_fetch_assoc($query);
 			$state2=$row['app_state'];
+			
+			exec('gpio mode 2 output');
+			if($state2==1){
+				exec('gpio write 2 1');
+			}
+			else{
+				exec('gpio write 2 0');
+			}	
 	}
 	else
 		$errormsg="Can't find state of Appliance 2..Database error";
@@ -59,7 +64,14 @@ $username= $_SESSION['username'];
 	if($numrows==1){
 			$row=mysqli_fetch_assoc($query);
 			$state3=$row['app_state'];
-			$jstate3=".$state3";
+
+			exec('gpio mode 3 output');
+			if($state3==1){
+				exec('gpio write 3 1');
+			}
+			else{
+				exec('gpio write 3 0');
+			}
 	}
 	else
 		$errormsg="Can't find state of Appliance 3..Database error";
@@ -76,16 +88,16 @@ $username= $_SESSION['username'];
             <ul class='clearfix'>
                 <li><a href='./member.php'>$username's Home</a></li>
                 <li>
-                    <a href='#'>States <span class='arrow'>&#9660;</span></a>
+                    <a >States <span class='arrow'>&#9660;</span></a>
      
                     <ul class='sub-menu'>
-                        <li><a href='#' onclick='changeAllStatesToFalse();'>ALL APPLIANCES OFF</a></li>
-                        <li><a href='#' onclick='changeAllStatesToTrue();'>ALL APPLIANCES ON</a></li>
-                        <li><a href='#' onclick='getStates();'>GET STATES</a></li>
+                        <li><a onclick='changeAllStatesToFalse();'>ALL APPLIANCES OFF</a></li>
+                        <li><a onclick='changeAllStatesToTrue();'>ALL APPLIANCES ON</a></li>
+                        <li><a onclick='getStates();'>GET STATES</a></li>
                     </ul>
                 </li>
-                <li><a href='#'>Security</a></li>
-                <li><a href='#'>Page info</a></li>
+                <li><a href='./security.php?userid=$username'>Security</a></li>
+                <li><a >About me</a></li>
                 <li><a href='./logout.php'>Logout</a></li>
             </ul>
         </nav>
@@ -95,21 +107,21 @@ $username= $_SESSION['username'];
 		<div class='buttonsArea'>
 			<div class='display'>
  				 <label class='label toggle'>
-  					  Appliance 1
+  					  App-1
    					 <input type='checkbox' class='toggle_input' id='button1' onclick='updateTable(1);'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
-  					  Appliance 2
+  					  App-2
    					 <input type='checkbox' class='toggle_input' id='button2' onclick='updateTable(2);'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
-  					  Appliance 3
+  					  App-3
    					 <input type='checkbox' class='toggle_input' id='button3' onclick='updateTable(3);' />
    					 <div class='toggle-control'></div>
  				 </label>
@@ -134,14 +146,14 @@ $username= $_SESSION['username'];
 	
 	?>
 	<script type='text/javascript'>
-        var v1 = <?php echo(json_encode($state1)); ?>;
+        	var v1 = <?php echo(json_encode($state1)); ?>;
 		
-        var v2 = <?php echo(json_encode($state2)); ?>;
+       	 	var v2 = <?php echo(json_encode($state2)); ?>;
 		
-        var v3 = <?php echo(json_encode($state3)); ?>;
+        	var v3 = <?php echo(json_encode($state3)); ?>;
         
-		setStates(v1,v2,v3);
+			setStates(v1,v2,v3);
  		
-	</script>
+	</script>;
 	</body>
 </html>
