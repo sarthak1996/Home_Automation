@@ -5,8 +5,8 @@ function setSec(s1){
     else 
 		checkbox.checked=0;
 }
-function updateSec(user){
-    var site="http://localhost/EHDLOGIN_rpi/updatesecurity.php?userid="+user;     
-    
+function updateSec(){
+//alert("hey");
+    var site="http://localhost/EHDLOGIN_rpi/updatesecurity.php";
     window.open(site,"_self")
 }

@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
-$username=($_GET['userid']);
+
 ?>
 
 
@@ -29,7 +29,7 @@ $username=($_GET['userid']);
 	$numrows=mysqli_num_rows($query);
 	if($numrows==1){
 			$row=mysqli_fetch_assoc($query);
-			$security=$row['security'];
+			$security=$row['secure'];
 			$people=$row['people'];
 	}
 	else
@@ -68,27 +68,17 @@ $username=($_GET['userid']);
 			<div class='display'>
  				 <label class='label toggle'>
   					  Security
-   					 <input type='checkbox' class='toggle_input' id='securityBtn' onclick='updateSec(<?php echo(json_encode($username)); ?>);'/>
+   					 <input type='checkbox' class='toggle_input' id='securityBtn' onclick='updateSec();'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 		<p> Number of Users:$people </p>
 	<!1 Toggle Buttons end>";
-	
-		
-	
-	if($username){
-		
+
 		echo "$home";
 
 		if($errormsg)
 			echo "<script type='text/javascript'>alert('$errormsg');</script>";
-	}
-	else{
-		header('Location:http://'.$raspiIp.'/EHDLOGIN_rpi/login.php');
-		echo "<script type='text/javascript'>alert('Please Login');</script>";
-	}
-	
 	?>
 	<script type='text/javascript'>
         	var v1 = <?php echo(json_encode($security)); ?>;
