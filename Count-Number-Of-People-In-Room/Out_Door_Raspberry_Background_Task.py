@@ -1,24 +1,29 @@
-import RPi.GPIO as GPIO 
+import RPi.GPIO as GPIO
+import time
 from datetime import datetime
 #pin number for pir 2
-doorOut=3;
-GPIO.setup(doorOut,GPIO.IN);
-threshold=0.2
+threshold=2
+doorIn=13
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(doorIn,GPIO.IN)
+hangState=0
 while(True):
-    doorOutstate=GPIO.input(doorOut);
-    if(doorOutstate==true):
-        #getting time
-        now =datetime.now()
-        time.sleep(threshold)
-        hangState=GPIO.input(doorIn)
-        if(hangState!=doorInstate):
-            f=open('out.txt','w')
-            currentDay=now.day
-            currentHour=now.hour
-            currentMinute=now.minute
-            currentSecond=now.second
-            currentSecond=currentSecond
-            currentMicrosecond=(now.microsecond)
-            f.write((str)(currentMonth)+"\n"+(str)(currentDay)+"\n"+(str)(currentHour)+"\n"+(str)(currentMinute)+"\n"+(str)(currentSecond)+"\n"+(str)(currentMicrosecond))
-            f.close()
-
+        doorInstate=GPIO.input(doorIn)
+	if(doorInstate==GPIO.HIGH):
+                #getting time
+                now=datetime.now()
+                time.sleep(threshold)
+                hangState=GPIO.input(doorIn)
+                if(hangState!=doorInstate and doorInstate==GPIO.HIGH and hangState==GPIO.LOW):
+                        f=open('out.txt','w')
+                        currentMonth=now.month            
+                        currentDay=now.day
+                        currentHour=now.hour
+                        currentMinute=now.minute
+                        currentSecond=now.second
+                        currentSecond=currentSecond
+                        currentMicrosecond=(now.microsecond)
+                        f.write((str)(currentMonth)+"\n"+(str)(currentDay)+"\n"+(str)(currentHour)+"\n"+(str)(currentMinute)+"\n"+(str)(currentSecond)+"\n"+(str)(currentMicrosecond))
+                        print "entered"
+                        f.close()
+			

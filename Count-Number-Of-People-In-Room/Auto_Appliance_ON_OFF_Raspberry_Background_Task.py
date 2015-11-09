@@ -1,34 +1,50 @@
 import RPi.GPIO as GPIO
-app1=1
-app2=2
-app3=3
-GPIO.setup(app1,GPIO.OUT);
-GPIO.setup(app2,GPIO.OUT);
-GPIO.setup(app3,GPIO.OUT);
+
 def check(f_in,f_out):
-    for i in range(0,6):
+    for i in range(0,7):
         var_in=f_in.readline()
         var_out=f_out.readline()
-        if(var_in=='')
+        #print var_in
+        if(var_in=="" and var_out==""):
+            f_in=open("in.txt","w")
+            f_out=open("out.txt","w")
+            f_in.close()
+            f_out.close()
             return -1
-        if(var_out=='')
+        if(var_in==""):
+            print "in empty"
+            return -1
+        if(var_out==""):
+            print "out empty"
             return -1
         if(var_in<var_out):
-            return 1
-        else:
-            return 0
+            f_in=open("in.txt","w")
+            f_out=open("out.txt","w")
 
+            f_in.close()
+            f_out.close()
+            return 1
+        elif(var_in>var_out):
+            f_in=open("in.txt","w")
+            f_out=open("out.txt","w")
+
+            f_in.close()
+            f_out.close()
+            return 0
+count=0
 while(True):
     f_in=open('in.txt','r')
     f_out=open('out.txt','r')
     x=check(f_in,f_out)
     if(x==1):
-        GPIO.output(app1,HIGH)
-        GPIO.output(app2,HIGH)
-        GPIO.output(app3,HIGH)
-    else:
-        GPIO.output(app1,LOW)
-        GPIO.output(app1,LOW)
-        GPIO.output(app1,LOW)
+        count=count+1
+        print "in"
+        
+    elif(x==0):
+	if(count!=0):	        
+		count=count-1
+	#print "out"
+    if(x!=-1):
+        print count
     f_in.close()
     f_out.close()
