@@ -7,9 +7,8 @@ function changeAllStatesToFalse(){
     checkbox2.checked=globalCheckBox;
     var checkbox3 = document.getElementById("button3");
     checkbox3.checked=globalCheckBox;
-    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q=0";     
-    
-    window.open(site,"_self")
+    var checkbox4 = document.getElementById("button4");
+    checkbox4.checked=globalCheckBox;
 }
 
 /* Change all states to true*/
@@ -21,20 +20,14 @@ function changeAllStatesToTrue(){
     checkbox2.checked=globalCheckBox;
     var checkbox3 = document.getElementById("button3");
     checkbox3.checked=globalCheckBox;
-
-
-    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q=4";     
-    
-    window.open(site,"_self")
-
-
-
+    var checkbox4 = document.getElementById("button4");
+    checkbox4.checked=globalCheckBox;
 }
 
 /* Return an alert of all the states*/
 function getStates(){
 	
-	var checkbox1 = document.getElementById("button1");
+    var checkbox1 = document.getElementById("button1");
     var alertString="";
     if(checkbox1.checked){
     	alertString="Appliance 1 is ON";
@@ -55,11 +48,18 @@ function getStates(){
     }else{
     	alertString+="\nAppliance 3 is OFF";
     }
+    var checkbox4 = document.getElementById("button4");
+
+    if(checkbox4.checked){
+    	alertString+="\nAppliance 4 is ON";
+    }else{
+    	alertString+="\nAppliance 4 is OFF";
+    }
     alert(alertString);
 }
 
 /* Set the states when opoening the home or the member page*/
-function setStates(s1,s2,s3){
+function setStates(s1,s2,s3,s4){
     var checkbox1 = document.getElementById("button1");
     if(s1==1)
 		checkbox1.checked=1;
@@ -76,11 +76,63 @@ function setStates(s1,s2,s3){
 	else 
 		checkbox3.checked=0;
 
+    var checkbox4 = document.getElementById("button4");
+    if(s4==1)
+		checkbox4.checked=1;
+	else 
+		checkbox4.checked=0;
+
 }
 
-/* Update the table whenever a checkbox is clicked*/
-function updateTable(app_n){
-    var site="http://localhost/EHDLOGIN_rpi/updatestate.php?q="+app_n;     
-    
-    window.open(site,"_self")
-}
+
+
+$(document).on('click','#button1',function(){
+
+$.post('updatestate2.php',{app_n:1}, function(data){
+});
+
+});
+
+
+
+$(document).on('click','#button2',function(){
+
+$.post('updatestate2.php',{app_n:2}, function(data){
+});
+
+});
+
+
+
+$(document).on('click','#button3',function(){
+
+$.post('updatestate2.php',{app_n:3}, function(data){
+});
+
+});
+
+
+
+$(document).on('click','#button4',function(){
+
+$.post('updatestate2.php',{app_n:4}, function(data){
+});
+
+});
+
+
+$(document).on('click','#allOff',function(){
+
+	$.post('updatestate2.php',{app_n:0}, function(data){
+	changeAllStatesToFalse();
+	});
+
+});
+
+$(document).on('click','#allOn',function(){
+
+	$.post('updatestate2.php',{app_n:5}, function(data){
+		changeAllStatesToTrue();
+	});
+
+});

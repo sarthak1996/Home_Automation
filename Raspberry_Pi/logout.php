@@ -22,12 +22,12 @@ $username= $_SESSION['username'];
 			if($username && $userid){
 				
 				session_destroy();
-				header('Location:http://'.$raspiIp.'/EHDLOGIN_rpi/login.php');
+				header('Location:/EHDLOGIN_rpi/login.php');
 				
 			}
 			else{
-				echo $form;
 				echo "<script type='text/javascript'>alert('You are not logged in.');</script>";
+				header('Location:/EHDLOGIN_rpi/login.php');
 			}
 		?>
 	

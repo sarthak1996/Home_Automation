@@ -13,7 +13,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 <body>
 <?php
 
-	$raspiIp='192.168.1.10';
+	$raspiIp='localhost';
 	if($_POST['registerbtn']){
 		// register button pressed
 		$getuser=$_POST['user'];

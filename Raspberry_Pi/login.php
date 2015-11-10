@@ -19,7 +19,7 @@ $username= $_SESSION['username'];
  <?php
  			$raspiIp='localhost';
 			if($username && $userid){
-				header('Location:http://'.$raspiIp.'/EHDLOGIN_rpi/member.php');
+				header('Location:/EHDLOGIN_rpi/member.php');
 			}
 			else{
             $form="<section class='login'>
@@ -58,7 +58,7 @@ $username= $_SESSION['username'];
 									//set session info
 									$_SESSION['userid']=$dbid;
 									$_SESSION['username']=$dbuser;
-									header('Location:http://'.$raspiIp.'/EHDLOGIN_rpi/member.php');
+									header('Location:/EHDLOGIN_rpi/member.php');
 									
 								}
 								else{

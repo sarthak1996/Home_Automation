@@ -11,6 +11,9 @@ $username= $_SESSION['username'];
         <meta charset="UTF-8">
         <title> Member system-login </title>
         <link rel="stylesheet" href="stylehome.css"/>
+	
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script language="javascript" src="scripthome.js"></script>
     </head>
 
@@ -76,6 +79,25 @@ $username= $_SESSION['username'];
 	else
 		$errormsg="Can't find state of Appliance 3..Database error";
 
+
+		
+	$query=mysqli_query($conState,"SELECT * FROM savedstates WHERE app_num='4'");
+	$numrows=mysqli_num_rows($query);
+	if($numrows==1){
+			$row=mysqli_fetch_assoc($query);
+			$state4=$row['app_state'];
+
+			exec('gpio mode 5 output');
+			if($state4==1){
+				exec('gpio write 5 1');
+			}
+			else{
+				exec('gpio write 5 0');
+			}
+	}
+	else
+		$errormsg="Can't find state of Appliance 3..Database error";
+
 	mysqli_close($conState);
 	
 	
@@ -91,8 +113,8 @@ $username= $_SESSION['username'];
                     <a >States <span class='arrow'>&#9660;</span></a>
      
                     <ul class='sub-menu'>
-                        <li><a onclick='changeAllStatesToFalse();'>ALL APPLIANCES OFF</a></li>
-                        <li><a onclick='changeAllStatesToTrue();'>ALL APPLIANCES ON</a></li>
+                        <li id='allOff'><a >ALL APPLIANCES OFF</a></li>
+                        <li id='allOn'><a >ALL APPLIANCES ON</a></li>
                         <li><a onclick='getStates();'>GET STATES</a></li>
                     </ul>
                 </li>
@@ -103,44 +125,51 @@ $username= $_SESSION['username'];
         </nav>
     </div>
 
-	<!3 Toggle Buttons start>
+	<!--3 Toggle Buttons start-->
 		<div class='buttonsArea'>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-1
-   					 <input type='checkbox' class='toggle_input' id='button1' onclick='updateTable(1);'/>
+   					 <input type='checkbox' class='toggle_input' id='button1' />
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-2
-   					 <input type='checkbox' class='toggle_input' id='button2' onclick='updateTable(2);'/>
+   					 <input type='checkbox' class='toggle_input' id='button2' />
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-3
-   					 <input type='checkbox' class='toggle_input' id='button3' onclick='updateTable(3);' />
+   					 <input type='checkbox' class='toggle_input' id='button3'  />
+   					 <div class='toggle-control'></div>
+ 				 </label>
+			</div>
+			<div class='display'>
+ 				 <label class='label toggle'>
+  					  App-4
+   					 <input type='checkbox' class='toggle_input' id='button4' />
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 		</div>
-	<!3 Toggle Buttons end>";
+	<!--3 Toggle Buttons end-->";
 		
 	
 
 
 	if($username && $userid){
 		
-		echo "$home";
+		echo $home;
 
-		if($errormsg)
-		echo "<script type='text/javascript'>alert('$errormsg');</script>";
+		//if($errormsg)
+		//echo "<script type='text/javascript'>alert('$errormsg');</script>";
 	}
 	else{
-		header('Location:http://'.$raspiIp.'/EHDLOGIN_rpi/login.php');
+		header('Location:/EHDLOGIN_rpi/login.php');
 		echo "<script type='text/javascript'>alert('Please Login');</script>";
 	}
 	
@@ -151,8 +180,9 @@ $username= $_SESSION['username'];
        	 	var v2 = <?php echo(json_encode($state2)); ?>;
 		
         	var v3 = <?php echo(json_encode($state3)); ?>;
-        
-			setStates(v1,v2,v3);
+        	
+		var v4 = <?php echo(json_encode($state4)); ?>;
+			setStates(v1,v2,v3,v4);
  		
 	</script>;
 	</body>

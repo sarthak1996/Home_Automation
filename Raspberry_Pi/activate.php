@@ -16,7 +16,7 @@ $username= $_SESSION['username'];
 	
 	<body>
 	<?php
-		$raspiIp='192.168.1.10';
+		$raspiIp='localhost';
 		include 'connect.php';
 		$getuser=$_GET['user'];
 		$getcode=$_GET['code'];

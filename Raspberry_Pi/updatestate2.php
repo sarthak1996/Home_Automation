@@ -1,7 +1,7 @@
 <?php
 	$raspiIp='localhost';	
 	error_reporting(E_ALL ^ E_NOTICE);
-	$getapp_num=($_GET['q']);
+	$getapp_num=($_POST['app_n']);
 	require("dynamicState.php");
 	include 'dynamicState.php';
 	if($getapp_num==0){

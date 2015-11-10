@@ -7,6 +7,6 @@ function setSec(s1){
 }
 function updateSec(){
 //alert("hey");
-    var site="http://localhost/EHDLOGIN_rpi/updatesecurity.php";
+    var site="/EHDLOGIN_rpi/updatesecurity.php";
     window.open(site,"_self")
 }

@@ -18,7 +18,7 @@
 		else
 			$errormsg="Can't find state of Appliance ..Database error";
 	
-	header('Location:http://'.$raspiIp.'/EHDLOGIN_rpi/security.php');
+	header('Location:/EHDLOGIN_rpi/security.php');
 	if($errormsg)
 		echo "<script type='text/javascript'>alert($errormsg);</script>";
 ?>
