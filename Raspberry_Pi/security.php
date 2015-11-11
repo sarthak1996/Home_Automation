@@ -12,6 +12,9 @@ $username= $_SESSION['username'];
         <meta charset="UTF-8">
         <title> Member system-login </title>
         <link rel="stylesheet" href="stylehome.css"/>
+        
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script language="javascript" src="scriptSec.js"></script>
     </head>
 
