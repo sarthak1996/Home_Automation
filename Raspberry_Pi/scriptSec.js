@@ -5,8 +5,23 @@ function setSec(s1){
     else 
 		checkbox.checked=0;
 }
-function updateSec(){
-//alert("hey");
-    var site="/EHDLOGIN_rpi/updatesecurity.php";
-    window.open(site,"_self")
-}
+$(document).on('click','#securityBtn',function(){
+
+$.post('updatestate.php', function(data){
+});
+
+});
+
+$(document).on('click','#allOff',function(){
+
+	$.post('updatestate.php',{app_n:0}, function(data){
+	});
+
+});
+
+$(document).on('click','#allOn',function(){
+
+	$.post('updatestate.php',{app_n:5}, function(data){
+	});
+
+});

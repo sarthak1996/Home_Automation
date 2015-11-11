@@ -88,7 +88,7 @@ function setStates(s1,s2,s3,s4){
 
 $(document).on('click','#button1',function(){
 
-$.post('updatestate2.php',{app_n:1}, function(data){
+$.post('updatestate.php',{app_n:1}, function(data){
 });
 
 });
@@ -97,7 +97,7 @@ $.post('updatestate2.php',{app_n:1}, function(data){
 
 $(document).on('click','#button2',function(){
 
-$.post('updatestate2.php',{app_n:2}, function(data){
+$.post('updatestate.php',{app_n:2}, function(data){
 });
 
 });
@@ -106,7 +106,7 @@ $.post('updatestate2.php',{app_n:2}, function(data){
 
 $(document).on('click','#button3',function(){
 
-$.post('updatestate2.php',{app_n:3}, function(data){
+$.post('updatestate.php',{app_n:3}, function(data){
 });
 
 });
@@ -115,7 +115,7 @@ $.post('updatestate2.php',{app_n:3}, function(data){
 
 $(document).on('click','#button4',function(){
 
-$.post('updatestate2.php',{app_n:4}, function(data){
+$.post('updatestate.php',{app_n:4}, function(data){
 });
 
 });
@@ -123,7 +123,7 @@ $.post('updatestate2.php',{app_n:4}, function(data){
 
 $(document).on('click','#allOff',function(){
 
-	$.post('updatestate2.php',{app_n:0}, function(data){
+	$.post('updatestate.php',{app_n:0}, function(data){
 	changeAllStatesToFalse();
 	});
 
@@ -131,7 +131,7 @@ $(document).on('click','#allOff',function(){
 
 $(document).on('click','#allOn',function(){
 
-	$.post('updatestate2.php',{app_n:5}, function(data){
+	$.post('updatestate.php',{app_n:5}, function(data){
 		changeAllStatesToTrue();
 	});
 

@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
-
+session_start();
+$userid= $_SESSION['userid'];
+$username= $_SESSION['username'];
 ?>
 
 
@@ -40,7 +42,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 
 	$home=  
-	"<div class='heading'  >
+	"<div class='heading' >
   		<p><b>EHD HOME AUTOMATION</b></p>
 	</div>
   	<div class='menu-wrap'>
@@ -51,12 +53,12 @@ error_reporting(E_ALL ^ E_NOTICE);
                     <a >States <span class='arrow'>&#9660;</span></a>
      
                     <ul class='sub-menu'>
-                        <li><a onclick='changeAllStatesToFalse();'>ALL APPLIANCES OFF</a></li>
-                        <li><a onclick='changeAllStatesToTrue();'>ALL APPLIANCES ON</a></li>
+                        <li id='allOff'><a>ALL APPLIANCES OFF</a></li>
+                        <li id='allOn'><a>ALL APPLIANCES ON</a></li>
                         <li><a onclick='getStates();'>GET STATES</a></li>
                     </ul>
                 </li>
-                <li><a href='./security.php?userid=$username'>Security</a></li>
+                <li><a href='./security.php>Security</a></li>
                 <li><a >About me</a></li>
                 <li><a href='./logout.php'>Logout</a></li>
             </ul>
@@ -68,22 +70,26 @@ error_reporting(E_ALL ^ E_NOTICE);
 			<div class='display'>
  				 <label class='label toggle'>
   					  Security
-   					 <input type='checkbox' class='toggle_input' id='securityBtn' onclick='updateSec();'/>
+   					 <input type='checkbox' class='toggle_input' id='securityBtn' />
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 		<p> Number of Users:$people </p>
 	<!1 Toggle Buttons end>";
+		if($username && $userid){
+			echo $home;
 
-		echo "$home";
-
-		if($errormsg)
-			echo "<script type='text/javascript'>alert('$errormsg');</script>";
+			if($errormsg)
+				echo "<script type='text/javascript'>alert('$errormsg');</script>";
+		}
+		else{
+			header('Location:/EHDLOGIN_rpi/login.php');
+		}
 	?>
 	<script type='text/javascript'>
         	var v1 = <?php echo(json_encode($security)); ?>;
 		setSec(v1);
- 		
 	</script>;
+
 	</body>
 </html>
