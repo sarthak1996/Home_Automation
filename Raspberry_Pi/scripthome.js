@@ -9,6 +9,7 @@ function changeAllStatesToFalse(){
     checkbox3.checked=globalCheckBox;
     var checkbox4 = document.getElementById("button4");
     checkbox4.checked=globalCheckBox;
+    updateTable(0);
 }
 
 /* Change all states to true*/
@@ -22,6 +23,7 @@ function changeAllStatesToTrue(){
     checkbox3.checked=globalCheckBox;
     var checkbox4 = document.getElementById("button4");
     checkbox4.checked=globalCheckBox;
+    updateTable(5);
 }
 
 /* Return an alert of all the states*/
@@ -84,55 +86,9 @@ function setStates(s1,s2,s3,s4){
 
 }
 
+function updateTable(app_n){
 
+	site="/EHDLOGIN_rpi/updatestate.php?app_n="+app_n;
+	window.open(site,"_self");
 
-$(document).on('click','#button1',function(){
-
-$.post('updatestate.php',{app_n:1}, function(data){
-});
-
-});
-
-
-
-$(document).on('click','#button2',function(){
-
-$.post('updatestate.php',{app_n:2}, function(data){
-});
-
-});
-
-
-
-$(document).on('click','#button3',function(){
-
-$.post('updatestate.php',{app_n:3}, function(data){
-});
-
-});
-
-
-
-$(document).on('click','#button4',function(){
-
-$.post('updatestate.php',{app_n:4}, function(data){
-});
-
-});
-
-
-$(document).on('click','#allOff',function(){
-
-	$.post('updatestate.php',{app_n:0}, function(data){
-	changeAllStatesToFalse();
-	});
-
-});
-
-$(document).on('click','#allOn',function(){
-
-	$.post('updatestate.php',{app_n:5}, function(data){
-		changeAllStatesToTrue();
-	});
-
-});
+}
