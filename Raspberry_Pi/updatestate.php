@@ -2,6 +2,7 @@
 	$raspiIp='localhost';	
 	error_reporting(E_ALL ^ E_NOTICE);
 	$getapp_num=($_GET['app_n']);
+	$on=($_GET['on'])
 	require("dynamicState.php");
 	include 'dynamicState.php';
 	if($getapp_num==0){
@@ -22,7 +23,11 @@
 		if($numrows==1){
 			$row=mysqli_fetch_assoc($query);
 			$dbapp_state=$row['app_state'];
-			if($dbapp_state==0)
+			if($on==0)
+				$query=mysqli_query($conState,"UPDATE savedstates set app_state='0' WHERE app_num='$getapp_num' ");
+			else if($on==1)
+				$query=mysqli_query($conState,"UPDATE savedstates set app_state='1' WHERE app_num='$getapp_num' ");
+			else if($dbapp_state==0)
 				$query=mysqli_query($conState,"UPDATE savedstates set app_state='1' WHERE app_num='$getapp_num' ");
 			else
 				$query=mysqli_query($conState,"UPDATE savedstates set app_state='0' WHERE app_num='$getapp_num' ");
