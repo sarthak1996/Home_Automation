@@ -11,9 +11,6 @@ $username= $_SESSION['username'];
         <meta charset="UTF-8">
         <title> Member system-login </title>
         <link rel="stylesheet" href="stylehome.css"/>
-	
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script language="javascript" src="scripthome.js"></script>
     </head>
 
@@ -87,12 +84,12 @@ $username= $_SESSION['username'];
 			$row=mysqli_fetch_assoc($query);
 			$state4=$row['app_state'];
 
-			exec('gpio mode 5 output');
+			exec('gpio mode 0 output');
 			if($state4==1){
-				exec('gpio write 5 1');
+				exec('gpio write 0 1');
 			}
 			else{
-				exec('gpio write 5 0');
+				exec('gpio write 0 0');
 			}
 	}
 	else
@@ -113,50 +110,50 @@ $username= $_SESSION['username'];
                     <a >States <span class='arrow'>&#9660;</span></a>
      
                     <ul class='sub-menu'>
-                        <li id='allOff'><a >ALL APPLIANCES OFF</a></li>
-                        <li id='allOn'><a >ALL APPLIANCES ON</a></li>
+                        <li onclick='changeAllStatesToFalse();'><a >ALL APPLIANCES OFF</a></li>
+                        <li onclick='changeAllStatesToTrue();'><a >ALL APPLIANCES ON</a></li>
                         <li><a onclick='getStates();'>GET STATES</a></li>
                     </ul>
                 </li>
-                <li><a href='./security.php?userid=$username'>Security</a></li>
+                <li><a href='./security.php'>Security</a></li>
                 <li><a >About me</a></li>
                 <li><a href='./logout.php'>Logout</a></li>
             </ul>
         </nav>
     </div>
 
-	<!--3 Toggle Buttons start-->
+	
 		<div class='buttonsArea'>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-1
-   					 <input type='checkbox' class='toggle_input' id='button1' />
+   					 <input type='checkbox' class='toggle_input' id='button1' onclick='updateTable(1);'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-2
-   					 <input type='checkbox' class='toggle_input' id='button2' />
+   					 <input type='checkbox' class='toggle_input' id='button2' onclick='updateTable(2);'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-3
-   					 <input type='checkbox' class='toggle_input' id='button3'  />
+   					 <input type='checkbox' class='toggle_input' id='button3'  onclick='updateTable(3);'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 			<div class='display'>
  				 <label class='label toggle'>
   					  App-4
-   					 <input type='checkbox' class='toggle_input' id='button4' />
+   					 <input type='checkbox' class='toggle_input' id='button4' onclick='updateTable(4);'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
 		</div>
-	<!--3 Toggle Buttons end-->";
+	";
 		
 	
 
@@ -165,8 +162,8 @@ $username= $_SESSION['username'];
 		
 		echo $home;
 
-		//if($errormsg)
-		//echo "<script type='text/javascript'>alert('$errormsg');</script>";
+		if($errormsg)
+			echo "<script type='text/javascript'>alert('$errormsg');</script>";
 	}
 	else{
 		header('Location:/EHDLOGIN_rpi/login.php');
@@ -184,6 +181,6 @@ $username= $_SESSION['username'];
 		var v4 = <?php echo(json_encode($state4)); ?>;
 			setStates(v1,v2,v3,v4);
  		
-	</script>;
+	</script>
 	</body>
 </html>

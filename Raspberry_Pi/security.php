@@ -12,9 +12,6 @@ $username= $_SESSION['username'];
         <meta charset="UTF-8">
         <title> Member system-login </title>
         <link rel="stylesheet" href="stylehome.css"/>
-        
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script language="javascript" src="scriptSec.js"></script>
     </head>
 
@@ -56,29 +53,30 @@ $username= $_SESSION['username'];
                     <a >States <span class='arrow'>&#9660;</span></a>
      
                     <ul class='sub-menu'>
-                        <li id='allOff'><a>ALL APPLIANCES OFF</a></li>
-                        <li id='allOn'><a>ALL APPLIANCES ON</a></li>
+                        <li onclick='updateState(0);'><a>ALL APPLIANCES OFF</a></li>
+                        <li onclick='updateState(5);'><a>ALL APPLIANCES ON</a></li>
                         <li><a onclick='getStates();'>GET STATES</a></li>
                     </ul>
                 </li>
-                <li><a href='./security.php>Security</a></li>
+                <li><a href='./security.php'>Security</a></li>
                 <li><a >About me</a></li>
                 <li><a href='./logout.php'>Logout</a></li>
             </ul>
         </nav>
     </div>
 
-	<!1 Toggle Buttons start>
+	
 		<div class='buttonsArea'>
 			<div class='display'>
  				 <label class='label toggle'>
   					  Security
-   					 <input type='checkbox' class='toggle_input' id='securityBtn' />
+   					 <input type='checkbox' class='toggle_input' id='securityBtn' onclick='updateSecurity();'/>
    					 <div class='toggle-control'></div>
  				 </label>
 			</div>
-		<p> Number of Users:$people </p>
-	<!1 Toggle Buttons end>";
+		<div>
+		<div><p> Number of People in room:$people </p></div>
+	";
 		if($username && $userid){
 			echo $home;
 
@@ -92,7 +90,7 @@ $username= $_SESSION['username'];
 	<script type='text/javascript'>
         	var v1 = <?php echo(json_encode($security)); ?>;
 		setSec(v1);
-	</script>;
+	</script>
 
 	</body>
 </html>

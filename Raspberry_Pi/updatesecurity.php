@@ -17,8 +17,7 @@
 		}
 		else
 			$errormsg="Can't find state of Appliance ..Database error";
-	
-	header('Location:/EHDLOGIN_rpi/security.php');
-	if($errormsg)
-		echo "<script type='text/javascript'>alert($errormsg);</script>";
+		header('Location:/EHDLOGIN_rpi/security.php');
+		if($errormsg)
+			echo "<script type='text/javascript'>alert($errormsg);</script>";
 ?>

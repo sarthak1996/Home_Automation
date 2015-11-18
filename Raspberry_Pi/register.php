@@ -47,7 +47,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 											$numrows=mysqli_num_rows($query);
 											if($numrows==1){
 												
-												$site="http://'.$raspiIp.'/LoginPhpMysql";
+												$site="http://'.$raspiIp.'/";
 												$webmaster="Sarthak <201301183@daiict.ac.in>";
 												$headers="From: $webmaster";
 												$subject="Activate your account";
