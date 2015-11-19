@@ -31,10 +31,10 @@ $username= $_SESSION['username'];
 
 			exec('gpio mode 7 output');
 			if($state1==1){
-				exec('gpio write 7 1');
+				exec('gpio write 7 0');
 			}
 			else{
-				exec('gpio write 7 0');
+				exec('gpio write 7 1');
 			}
 	}
 	else
@@ -49,10 +49,10 @@ $username= $_SESSION['username'];
 			
 			exec('gpio mode 2 output');
 			if($state2==1){
-				exec('gpio write 2 1');
+				exec('gpio write 2 0');
 			}
 			else{
-				exec('gpio write 2 0');
+				exec('gpio write 2 1');
 			}	
 	}
 	else
@@ -67,10 +67,10 @@ $username= $_SESSION['username'];
 
 			exec('gpio mode 3 output');
 			if($state3==1){
-				exec('gpio write 3 1');
+				exec('gpio write 3 0');
 			}
 			else{
-				exec('gpio write 3 0');
+				exec('gpio write 3 1');
 			}
 	}
 	else
@@ -86,10 +86,10 @@ $username= $_SESSION['username'];
 
 			exec('gpio mode 0 output');
 			if($state4==1){
-				exec('gpio write 0 1');
+				exec('gpio write 0 0');
 			}
 			else{
-				exec('gpio write 0 0');
+				exec('gpio write 0 1');
 			}
 	}
 	else
@@ -115,7 +115,7 @@ $username= $_SESSION['username'];
                         <li><a onclick='getStates();'>GET STATES</a></li>
                     </ul>
                 </li>
-                <li><a href='./security.php'>Security</a></li>
+                <li><a href='./security.php?userid=$username'>Security</a></li>
                 <li><a >About me</a></li>
                 <li><a href='./logout.php'>Logout</a></li>
             </ul>

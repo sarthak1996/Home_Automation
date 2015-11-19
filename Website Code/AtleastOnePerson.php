@@ -1,10 +1,10 @@
 <?php
 	$raspiIp='localhost';	
 	error_reporting(E_ALL ^ E_NOTICE);
-	$getapp_num=($_POST['app_n']);
+//	$getapp_num=($_POST['app_n']);
 	require("dynamicState.php");
 	include 'dynamicState.php';
-	if($getapp_num==0){
+//	if($getapp_num==0){
 		$query=mysqli_query($conState,"SELECT * FROM savedstates WHERE app_num='1'");
 		$numrows=mysqli_num_rows($query);
 		if($numrows==1){
@@ -61,7 +61,8 @@
 		else
 		$errormsg="Can't find state of Appliance ..Database error";
 		
-	}
+//	}
+	header('Location:/EHDLOGIN_rpi/member.php');
 	if($errormsg)
 		echo "<script type='text/javascript'>alert($errormsg);</script>";
 ?>

@@ -75,8 +75,11 @@ $username= $_SESSION['username'];
  				 </label>
 			</div>
 		<div>
-		<div><p> Number of People in room:$people </p></div>
 	";
+                 $file1="buttonstatus5.txt";
+                 $handle=fopen($file1,'w+');
+                 fwrite($handle,$security);
+                 fclose($handle);
 		if($username && $userid){
 			echo $home;
 
